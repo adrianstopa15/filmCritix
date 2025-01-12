@@ -1,10 +1,63 @@
-body {
-  font-family: "Share Tech Mono", serif;
-  font-weight: 800;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lilita One", serif;
+  font-weight: 400;
   font-style: normal;
+  color: white;
+}
+body {
 }
 
-.header-menu {
+.navbar-menu {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.74);
+  color: rgb(255, 255, 255);
+  padding: 20px;
 }
 .button-red {
+  background-color: red;
+  border-radius: 8%;
+  padding: 10px 15px;
+
+  cursor: pointer;
+  border: none;
+}
+.pNavbar {
+  font-size: 25px;
+}
+.header-container {
+  background-image: url(./assets/header-background2.jpg);
+  background-size: cover;
+  object-fit: contain;
+  padding-bottom: 55rem;
+}
+.mid {
+  background-color: rgb(0, 0, 0);
+}
+.mid-container {
+  background-color: black;
+  overflow: hidden;
+  padding-bottom: 10rem;
+  width: 50%;
+}
+.p-medium {
+  font-size: 2rem;
+}
+.movie-image {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.moviesContainer {
 }
