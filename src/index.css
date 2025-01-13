@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  @apply box-border m-0 p-0;
+
   font-family: "Lilita One", serif;
   font-weight: 400;
   font-style: normal;
@@ -13,16 +12,21 @@
 }
 body {
 }
-
-.navbar-menu {
-  position: fixed;
-  width: 100%;
+.header-main {
+  /* background-color: black; */
+}
+.navbar {
+  /* background-color: black; */
+}
+.navbar-container {
+  max-width: 150rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.74);
   color: rgb(255, 255, 255);
   padding: 20px;
+  margin: 0 auto;
 }
 .button-red {
   background-color: red;
@@ -36,28 +40,51 @@ body {
   font-size: 25px;
 }
 .header-container {
-  background-image: url(./assets/header-background2.jpg);
+  /* background-image: url(./assets/header-background2.jpg); */
   background-size: cover;
   object-fit: contain;
-  padding-bottom: 55rem;
+  height: 50rem;
+  /* padding-bottom: 55rem; */
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.top {
+  background-color: black;
+}
+.top-container {
+  background-image: url(./assets/header-background2.jpg);
+  background-size: cover;
+  max-width: 150rem;
+  margin: 0 auto;
 }
 .mid {
   background-color: rgb(0, 0, 0);
 }
 .mid-container {
+  max-width: 130rem;
   background-color: black;
   overflow: hidden;
   padding-bottom: 10rem;
-  width: 50%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
 }
 .p-medium {
   font-size: 2rem;
 }
 .movie-image {
   position: relative;
-  height: 250px;
+  height: 320px;
   overflow: hidden;
 }
 
 .moviesContainer {
+  position: relative;
+  overflow: hidden;
+  max-width: 80%;
+}
+.slick-slide > div {
+  margin: 0 15px;
 }

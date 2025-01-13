@@ -24,19 +24,29 @@ export default function MainMenu() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
+    speed: 1000,
+    autoplaySpeed: 5000,
+    autoplay: true,
+    cssEase: "linear",
   };
 
   return (
-    <div>
-      <header className="header-container">
-        <nav className="navbar-menu">
-          <p className="pNavbar">FilmCritix</p>
-          <button className="button-red">Sign In</button>
-        </nav>
-      </header>
+    <>
+      <section className="top">
+        <div className="top-container">
+          <section className="navbar">
+            <nav className="navbar-container">
+              <p className="pNavbar">FilmCritix</p>
+              <button className="button-red">Sign In</button>
+            </nav>
+          </section>
+          <header className="header-main">
+            <header className="header-container"></header>
+          </header>
+        </div>
+      </section>
       <div className="mid flex items-center justify-center">
         <div className="mid-container ">
           <p className="p-medium mb-8 mt-16">Najnowsze Recenzje:</p>
@@ -52,6 +62,6 @@ export default function MainMenu() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
