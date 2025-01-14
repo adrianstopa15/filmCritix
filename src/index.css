@@ -5,8 +5,9 @@
 * {
   @apply box-border m-0 p-0;
 
-  font-family: "Lilita One", serif;
-  font-weight: 400;
+  /* font-family: "Oswald", serif; */
+  font-optical-sizing: auto;
+  font-weight: 600;
   font-style: normal;
   color: white;
 }
@@ -23,21 +24,25 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.74);
+  background-color: rgba(0, 0, 0, 0.466);
   color: rgb(255, 255, 255);
   padding: 20px;
   margin: 0 auto;
 }
 .button-red {
   background-color: red;
-  border-radius: 8%;
-  padding: 10px 15px;
+  border-radius: 4%;
 
   cursor: pointer;
   border: none;
 }
+.inputMain {
+  padding: 1rem 2rem;
+  background-color: rgba(8, 8, 8, 0.699);
+  border: solid rgb(134, 132, 132) 1px;
+  border-radius: 2%;
+}
 .pNavbar {
-  font-size: 25px;
 }
 .header-container {
   /* background-image: url(./assets/header-background2.jpg); */
@@ -45,8 +50,11 @@ body {
   object-fit: contain;
   height: 50rem;
   /* padding-bottom: 55rem; */
-  max-width: 1600px;
+  max-width: 150rem;
   margin: 0 auto;
+}
+.header-textContainer {
+  max-width: 60rem;
 }
 .top {
   background-color: black;
@@ -61,14 +69,13 @@ body {
   background-color: rgb(0, 0, 0);
 }
 .mid-container {
-  max-width: 130rem;
+  max-width: 75rem;
   background-color: black;
   overflow: hidden;
   padding-bottom: 10rem;
-  width: 80%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   margin: 0 auto;
 }
 .p-medium {
@@ -83,8 +90,39 @@ body {
 .moviesContainer {
   position: relative;
   overflow: hidden;
-  max-width: 80%;
+  width: 100%;
 }
 .slick-slide > div {
   margin: 0 15px;
+}
+.bottom {
+  background-color: black;
+  height: 30rem;
+  padding: 1rem 0;
+}
+.bottom-container {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+.bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+.grid-card {
+  background-color: rgba(95, 95, 95, 0.123);
+  border-radius: 5%;
+  background: linear-gradient(to bottom right, #192043 10%, #210e17);
+  transition: 0.2s;
+}
+.grid-card:hover {
+  transform: scale(1.05);
+}
+footer {
+  background-color: black;
+}
+.footer-container {
+  max-width: 75rem;
+  margin: 0 auto;
+  height: 20rem;
 }

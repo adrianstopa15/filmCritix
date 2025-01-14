@@ -20,6 +20,28 @@ export default function MainMenu() {
     { name: "Zielona Mila", genre: "thriller", img: movie5 },
     { name: "Zielona Mila", genre: "thriller", img: movie2 },
   ];
+  const loggedProfits = [
+    {
+      text: "Przeglądaj wszystkie recenzje",
+      subtext:
+        "Jako zalogowany użytkownik masz dostęp do wszystkich recenzji za darmo.",
+    },
+    {
+      text: "Recenzuj recenzje",
+      subtext:
+        "Poczuj się jak krytyk i oceń, bądź skomentuj recenzje eksperta.",
+    },
+    {
+      text: "Polecane recenzje",
+      subtext:
+        "W menu głównym wyświetlane będą najlepsze recenzje specjalnie dla Ciebie.",
+    },
+    {
+      text: "Odkryte recenzje",
+      subtext:
+        "Pozwól nam informować Cię, które recenzję już zostały przez Ciebie odkryte.",
+    },
+  ];
 
   const settings = {
     dots: true,
@@ -38,18 +60,41 @@ export default function MainMenu() {
         <div className="top-container">
           <section className="navbar">
             <nav className="navbar-container">
-              <p className="pNavbar">FilmCritix</p>
-              <button className="button-red">Sign In</button>
+              <p className="pNavbar text-2xl lg:text-4xl font-bold">
+                Film<span className="text-red-500">Critix</span>
+              </p>
+              <button className="button-red font-bold px-4 py-3">
+                Zaloguj się
+              </button>
             </nav>
           </section>
           <header className="header-main">
-            <header className="header-container"></header>
+            <header className="header-container flex justify-center items-center text-center">
+              <div className="header-textContainer">
+                <h1 className="text-3xl font-extrabold tracking-wider md:leading-relaxed md:text-7xl">
+                  Propozycje filmowe, recenzje i wiele więcej bez ogarniczeń
+                </h1>
+                <p className="text-xl mt-12 mb-4 md:text-2xl text-gray-200">
+                  Zaczynamy oglądać? Wprowadź adres e‑mail, aby utworzyć lub
+                  odnowić konto.
+                </p>
+                <div className="flex items-center justify-center">
+                  <input
+                    placeholder="Adres e-mail"
+                    className="inputMain mr-8"
+                  />
+                  <button className="button-red font-bold py-3 px-10 text-2xl">
+                    Rozpocznij {">"}
+                  </button>
+                </div>
+              </div>
+            </header>
           </header>
         </div>
       </section>
-      <div className="mid flex items-center justify-center">
-        <div className="mid-container ">
-          <p className="p-medium mb-8 mt-16">Najnowsze Recenzje:</p>
+      <section className="mid">
+        <div className="mid-container">
+          <p className="p-medium mb-8 mt-16">Najnowsze Recenzje</p>
 
           <div className="moviesContainer px-8">
             <Slider {...settings}>
@@ -61,7 +106,36 @@ export default function MainMenu() {
             </Slider>
           </div>
         </div>
-      </div>
+      </section>
+      <section className="bottom">
+        <div className="bottom-container">
+          <p className="p-medium mb-8">Dlaczego warto dołączyć</p>
+          <div className="bottom-grid">
+            {loggedProfits.map((p) => (
+              <div className="grid-card py-8 px-12 pb-32">
+                <h3 className="text-xl mb-6 font-bold">{p.text}</h3>
+                <p className="text-gray-300">{p.subtext}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <footer>
+        <div className="footer-container flex items-center justify-center">
+          <div>
+            <p className="mb-4">
+              Zaczynamy oglądać? Wprowadź adres e‑mail, aby utworzyć lub odnowić
+              konto.
+            </p>
+            <div className="flex items-center justify-center">
+              <input placeholder="Adres e-mail" className="inputMain mr-8" />
+              <button className="button-red font-bold py-3 px-10 text-2xl">
+                Rozpocznij {">"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
