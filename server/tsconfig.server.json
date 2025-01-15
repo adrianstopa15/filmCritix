@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2020",
+
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "strict": true,
+    "skipLibCheck": true,
+
+    "outDir": "dist"
+  },
+  "include": ["index.ts", "models/**/*.ts", "controllers/**/*.ts"]
+}
