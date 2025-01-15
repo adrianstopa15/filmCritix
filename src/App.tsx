@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import LoginPanel from "./components/features/LoginPanel";
-import MainMenu from "./components/features/mainMenuComponents/MainMenu";
+import MainMenu from "./components/MainMenu";
 import RegisterPanel from "./components/features/RegisterPanel";
 import { AuthProvider } from "./store/AuthContext";
 function App() {
