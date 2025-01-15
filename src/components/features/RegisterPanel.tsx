@@ -46,7 +46,7 @@ export default function RegisterPanel() {
               id="email"
               name="email"
               onChange={handleRegisterChange}
-              className="inputMain mb-8"
+              className="inputMain mb-7"
               placeholder="E-mail"
             />
             <input
@@ -54,7 +54,7 @@ export default function RegisterPanel() {
               id="login"
               name="login"
               onChange={handleRegisterChange}
-              className="inputMain mb-8"
+              className="inputMain mb-7"
               placeholder="Login"
             />
             <input
@@ -62,11 +62,11 @@ export default function RegisterPanel() {
               id="password"
               name="password"
               onChange={handleRegisterChange}
-              className="inputMain mb-8"
+              className="inputMain mb-7"
               placeholder="Hasło"
             />
             <input
-              className="inputMain mb-8"
+              className="inputMain mb-7"
               type="text"
               id="name"
               name="name"
@@ -74,7 +74,7 @@ export default function RegisterPanel() {
               placeholder="Imie"
             />
             <input
-              className="inputMain mb-8"
+              className="inputMain mb-7"
               type="text"
               id="surname"
               onChange={handleRegisterChange}
@@ -82,7 +82,7 @@ export default function RegisterPanel() {
               placeholder="Nazwisko"
             />
             <input
-              className="inputMain mb-8"
+              className="inputMain mb-7"
               type="text"
               id="phone"
               name="phone"

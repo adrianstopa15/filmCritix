@@ -95,4 +95,42 @@ app.post("/api/login", async (req: Request, res: Response) => {
   }
 });
 
+app.get("/api/me", async (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.json({
+        isLoggedIn: false,
+        czyAdmin: false,
+        message: "Brak tokenu w ciasteczku, użytkownik niezalogowany",
+      });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+    const { userId } = decoded as { userId: string };
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.json({
+        isLoggedIn: false,
+        czyAdmin: false,
+        message: "nie znaleziono użytkownika w bazie",
+      });
+    }
+    return res.json({
+      isLoggedIn: true,
+      czyAdmin: user.czyAdmin,
+      login: user.login,
+      email: user.email,
+      name: user.name,
+      surname: user.surname,
+      phone: user.phone,
+    });
+  } catch (error) {
+    console.error("Wystąpił błąd", error);
+    return res
+      .status(500)
+      .json({ error: "Wystąpił problem z odczytywaniem danych użytkownika" });
+  }
+});
+
 app.listen(PORT, () => console.log(`Server is running at port ${PORT}`));

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Header from "../Header";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../store/AuthContext";
 
 export default function LoginPanel() {
+  const { checkAuthStatus } = useAuth();
   const [formData, setFormData] = useState({});
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +26,7 @@ export default function LoginPanel() {
     } catch (error) {
       console.error("There was problem with login user", error);
     }
+    checkAuthStatus();
     console.log("User has been logged");
   };
   return (

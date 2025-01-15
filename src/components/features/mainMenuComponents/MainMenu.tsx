@@ -1,14 +1,17 @@
 import React, { useRef } from "react";
-import movie1 from "../../assets/movie1.jpg";
-import movie2 from "../../assets/movie2.jpg";
-import movie3 from "../../assets/movie3.jpg";
-import movie4 from "../../assets/movie4.jpg";
-import movie5 from "../../assets/movie5.jpg";
+import movie1 from "../../../assets/movie1.jpg";
+import movie2 from "../../../assets/movie2.jpg";
+import movie3 from "../../../assets/movie3.jpg";
+import movie4 from "../../../assets/movie4.jpg";
+import movie5 from "../../../assets/movie5.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../../store/AuthContext";
 export default function MainMenu() {
+  const { isLoggedIn, isAdmin } = useAuth();
+
   const fakeMovies = [
     { name: "Zielona Mila", genre: "thriller", img: movie1 },
     { name: "Zielona Mila", genre: "thriller", img: movie2 },
@@ -76,6 +79,7 @@ export default function MainMenu() {
                 <h1 className="text-3xl font-extrabold tracking-wider md:leading-relaxed md:text-7xl">
                   Propozycje filmowe, recenzje i wiele więcej bez ogarniczeń
                 </h1>
+
                 <p className="text-xl mt-12 mb-4 md:text-2xl text-gray-200">
                   Zaczynamy przeglądać? Wprowadź adres e‑mail, aby utworzyć
                   konto.
