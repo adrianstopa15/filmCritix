@@ -14,7 +14,10 @@ export default function LoginPanel() {
           Zaloguj się
         </button>
         Nie masz jeszcze konta w serwisie filmCritix?
-        <NavLink to="/registerPanel">Zarejestruj się</NavLink>
+        <NavLink to="/registerPanel">
+          {" "}
+          <p className="italic">Zarejestruj się</p>
+        </NavLink>
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ export default function RegisterPanel() {
         <div className="login-container flex items-center flex-col">
           <p className="text-2xl mt-8 mb-12">Rejestracja</p>
           <input type="text" placeholder="E-mail" className="inputMain mb-8" />
-          <input type="text" placeholder="login" className="inputMain mb-8" />
           <input type="text" placeholder="Hasło" className="inputMain mb-8" />
           <input
             type="text"
@@ -21,7 +20,9 @@ export default function RegisterPanel() {
             Zarejestruj się
           </button>
           masz już konto w serwisie filmCritix?
-          <NavLink to="/loginpanel">Zaloguj się</NavLink>
+          <NavLink to="/loginpanel">
+            <p className="italic">Zaloguj się</p>
+          </NavLink>
         </div>
       </div>
     </>
