@@ -29,6 +29,16 @@ body {
   padding: 20px;
   margin: 0 auto;
 }
+.global-navbar-container {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.466);
+  color: rgb(255, 255, 255);
+  padding: 20px;
+  margin: 0 auto;
+}
 .button-red {
   background-color: red;
   border-radius: 4%;
@@ -125,4 +135,28 @@ footer {
   max-width: 75rem;
   margin: 0 auto;
   height: 20rem;
+}
+.login-container {
+  width: 30rem;
+  margin: 0 auto;
+  max-width: 100rem;
+  background-color: rgba(0, 0, 0, 0.664);
+  height: auto;
+  padding-bottom: 3rem;
+}
+.footer-login {
+  background-color: black;
+  height: 20rem;
+  max-width: 150rem;
+  margin: 0 auto;
+}
+.test-kontener {
+  /* background-image: url(./assets/header-background2.jpg);
+  background-size: cover;
+  min-height: 200rem; */
+}
+.login-section {
+  background-image: url(./assets/header-background2.jpg);
+  background-size: cover;
+  min-height: 100vh;
 }

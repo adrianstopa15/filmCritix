@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
-import movie1 from "../assets/movie1.jpg";
-import movie2 from "../assets/movie2.jpg";
-import movie3 from "../assets/movie3.jpg";
-import movie4 from "../assets/movie4.jpg";
-import movie5 from "../assets/movie5.jpg";
-import arrow from "../assets/arrow.png";
+import movie1 from "../../assets/movie1.jpg";
+import movie2 from "../../assets/movie2.jpg";
+import movie3 from "../../assets/movie3.jpg";
+import movie4 from "../../assets/movie4.jpg";
+import movie5 from "../../assets/movie5.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { NavLink } from "react-router-dom";
 export default function MainMenu() {
   const fakeMovies = [
     { name: "Zielona Mila", genre: "thriller", img: movie1 },
@@ -49,7 +49,7 @@ export default function MainMenu() {
     slidesToShow: 5,
     slidesToScroll: 1,
     speed: 1000,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     autoplay: true,
     cssEase: "linear",
   };
@@ -63,9 +63,11 @@ export default function MainMenu() {
               <p className="pNavbar text-2xl lg:text-4xl font-bold">
                 Film<span className="text-red-500">Critix</span>
               </p>
-              <button className="button-red font-bold px-4 py-3">
-                Zaloguj się
-              </button>
+              <NavLink to="/loginPanel">
+                <button className="button-red font-bold px-4 py-2">
+                  Zaloguj się
+                </button>
+              </NavLink>
             </nav>
           </section>
           <header className="header-main">
@@ -75,17 +77,19 @@ export default function MainMenu() {
                   Propozycje filmowe, recenzje i wiele więcej bez ogarniczeń
                 </h1>
                 <p className="text-xl mt-12 mb-4 md:text-2xl text-gray-200">
-                  Zaczynamy oglądać? Wprowadź adres e‑mail, aby utworzyć lub
-                  odnowić konto.
+                  Zaczynamy przeglądać? Wprowadź adres e‑mail, aby utworzyć
+                  konto.
                 </p>
                 <div className="flex items-center justify-center">
                   <input
                     placeholder="Adres e-mail"
                     className="inputMain mr-8"
                   />
-                  <button className="button-red font-bold py-3 px-10 text-2xl">
-                    Rozpocznij {">"}
-                  </button>
+                  <NavLink to="/registerPanel">
+                    <button className="button-red font-bold py-3 px-10 text-2xl">
+                      Rozpocznij {">"}
+                    </button>
+                  </NavLink>
                 </div>
               </div>
             </header>
@@ -124,14 +128,15 @@ export default function MainMenu() {
         <div className="footer-container flex items-center justify-center">
           <div>
             <p className="mb-4">
-              Zaczynamy oglądać? Wprowadź adres e‑mail, aby utworzyć lub odnowić
-              konto.
+              Zaczynamy przeglądać? Wprowadź adres e‑mail, aby utworzyć konto.
             </p>
             <div className="flex items-center justify-center">
               <input placeholder="Adres e-mail" className="inputMain mr-8" />
-              <button className="button-red font-bold py-3 px-10 text-2xl">
-                Rozpocznij {">"}
-              </button>
+              <NavLink to="/registerPanel">
+                <button className="button-red font-bold py-3 px-10 text-2xl">
+                  Rozpocznij {">"}
+                </button>
+              </NavLink>
             </div>
           </div>
         </div>
