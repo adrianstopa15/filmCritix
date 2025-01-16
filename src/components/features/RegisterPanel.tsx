@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Header from "../Header";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { response } from "express";
+import Swal from "sweetalert2";
 export default function RegisterPanel() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
 
   const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +33,19 @@ export default function RegisterPanel() {
         console.error("Error setting up request", error.message);
       }
     }
+
+    Swal.fire({
+      title: "Twoje konto zostało zarejestrowane.",
+      text: "Życzymy miłego korzystania z aplikacji!",
+      icon: "success",
+      showConfirmButton: true,
+      confirmButtonText: "Przejdź do logowania",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/loginPanel");
+      }
+    });
+
     console.log(`User has been register`);
   };
 

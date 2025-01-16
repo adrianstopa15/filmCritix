@@ -19,7 +19,7 @@ export default function MainMenu() {
     <>
       <Top />
       <Mid />
-      {isLoggedIn && <Bottom />}
+      {!isLoggedIn && <Bottom />}
       <Footer />
     </>
   );

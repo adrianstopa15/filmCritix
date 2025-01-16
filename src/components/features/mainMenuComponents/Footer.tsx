@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-container flex items-center justify-center">
-        {isLoggedIn ? (
+        {!isLoggedIn ? (
           <div>
             <p className="mb-4">
               Zaczynamy przeglądać? Wprowadź adres e‑mail, aby utworzyć konto.

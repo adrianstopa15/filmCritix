@@ -163,3 +163,10 @@ footer {
 .user-panel {
   color: black;
 }
+.avatarIcon {
+  height: 52px;
+  border-radius: 50px;
+}
+.avatarIcon:hover {
+  filter: brightness(115%);
+}

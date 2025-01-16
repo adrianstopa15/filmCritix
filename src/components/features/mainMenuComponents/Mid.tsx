@@ -53,7 +53,7 @@ export default function Mid() {
     <section className="mid">
       <div className="mid-container">
         <div className="moviesContainer px-8">
-          {isLoggedIn ? (
+          {!isLoggedIn ? (
             <>
               <p className="p-medium mb-8 mt-16">Najnowsze Recenzje</p>
               <Slider {...settings}>

@@ -1,39 +1,84 @@
-.userPanelContainer {
-  max-width: 150rem;
-  margin: 0 auto;
+.fBasic {
+  color: #818592;
+}
+.fBasic {
+  font-size: 16px;
+  color: #818592;
+  position: relative;
+}
+
+/* .fBasic::after {
+  content: "▼";
+  font-size: 12px;
+  color: #45b4d0;
+  margin-left: 5px;
+} */
+.navbarPanel {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: rgb(255, 255, 255);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  /* margin: 0 auto; */
+}
+.navbarIcon {
+  height: 24px;
+  margin-right: 1rem;
+}
+.headerIcon {
+  height: 42px;
+  border-radius: 50px;
 }
 .userPanelContent {
-  color: #81838f;
-  display: flex;
-  height: 60rem;
-}
-.userPanelContent li {
-  background-color: red;
-  padding-left: 1.5rem;
-}
-.navbarLeft {
-  width: 16rem;
-  background-color: brown;
-}
-.heroContainer {
   background-color: #e6eff6;
-  width: 140rem;
+  /* max-width: 160rem; */
+  color: #818592;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* flex-direction: column; */
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.navbarLeft {
+  width: auto;
+  padding-right: 2rem;
+  background-color: white;
+  box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
 }
 .heroContainerBox {
   background-color: white;
-  width: 60rem;
-  height: 45rem;
+  width: 50rem;
   border-radius: 1%;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  margin: 12rem auto;
+  height: 45rem;
 }
 .heroContainerContent {
   margin: 1.2rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.userPanelContent li {
+  display: flex;
+  align-items: center;
+  padding-left: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.userPanelContent li:hover {
+  background-color: #45b4d01c;
+}
+.selected {
+  color: #45b4d0;
+  background-color: #45b4d01c;
+  filter: invert(70%) sepia(74%) saturate(651%) hue-rotate(162deg)
+    brightness(96%) contrast(100%);
 }
 .avatarPicture {
   height: 100px;
@@ -60,6 +105,13 @@
 .btnMainBlue:active {
   transform: translateY(-0.5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.btnMainDisabled {
+  color: white;
+  background-color: #4a5355;
+  padding: 8px 25px;
+  border-radius: 50px;
+  cursor: not-allowed;
 }
 .profileGrid {
   display: grid;
@@ -94,4 +146,22 @@
 }
 .gridCard3 h2 {
   color: #45b4d0;
+}
+.userDetailsContainer p {
+  margin-bottom: 32px;
+}
+@media screen and (max-width: 1200px) {
+  .userPanelContent {
+    flex-direction: column;
+  }
+  .heroContainerBox {
+    width: auto;
+    margin: 0 0;
+    height: fit-content;
+  }
+  .profileGrid {
+    grid-template-columns: 1fr;
+  }
+  .navbarLeft {
+  }
 }

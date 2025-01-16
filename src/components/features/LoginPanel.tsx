@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Header from "../Header";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../store/AuthContext";
 
 export default function LoginPanel() {
+  const navigate = useNavigate();
   const { checkAuthStatus } = useAuth();
   const [formData, setFormData] = useState({});
 
@@ -27,7 +28,7 @@ export default function LoginPanel() {
       console.error("There was problem with login user", error);
     }
     checkAuthStatus();
-    console.log("User has been logged");
+    navigate("/");
   };
   return (
     <div className="login-section">

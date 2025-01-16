@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../store/AuthContext";
-
+import avatarIcon from "../../../assets/profileAvatar.jpg";
 export default function Top() {
   const { isLoggedIn } = useAuth();
   return (
@@ -12,7 +12,7 @@ export default function Top() {
             <p className="pNavbar text-2xl lg:text-4xl font-bold">
               Film<span className="text-red-500">Critix</span>
             </p>
-            {isLoggedIn ? (
+            {!isLoggedIn ? (
               <NavLink to="/loginPanel">
                 <button className="button-red font-bold px-4 py-2">
                   Zaloguj się
@@ -20,16 +20,14 @@ export default function Top() {
               </NavLink>
             ) : (
               <NavLink to="/userPanel">
-                <button className="button-red font-bold px-4 py-2">
-                  Profil
-                </button>
+                <img src={avatarIcon} className="avatarIcon mr-4" />
               </NavLink>
             )}
           </nav>
         </section>
         <header className="header-main">
           <div className="header-container flex justify-center items-center text-center">
-            {isLoggedIn ? (
+            {!isLoggedIn ? (
               <div className="header-textContainer">
                 <h1 className="text-3xl font-extrabold tracking-wider md:leading-relaxed md:text-7xl">
                   Propozycje filmowe, recenzje i wiele więcej bez ogarniczeń
