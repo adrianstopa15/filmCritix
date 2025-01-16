@@ -19,7 +19,7 @@ export default function Top() {
                 </button>
               </NavLink>
             ) : (
-              <NavLink to="/loginPanel">
+              <NavLink to="/userPanel">
                 <button className="button-red font-bold px-4 py-2">
                   Profil
                 </button>

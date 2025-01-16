@@ -1,0 +1,97 @@
+.userPanelContainer {
+  max-width: 150rem;
+  margin: 0 auto;
+}
+.userPanelContent {
+  color: #81838f;
+  display: flex;
+  height: 60rem;
+}
+.userPanelContent li {
+  background-color: red;
+  padding-left: 1.5rem;
+}
+.navbarLeft {
+  width: 16rem;
+  background-color: brown;
+}
+.heroContainer {
+  background-color: #e6eff6;
+  width: 140rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.heroContainerBox {
+  background-color: white;
+  width: 60rem;
+  height: 45rem;
+  border-radius: 1%;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+.heroContainerContent {
+  margin: 1.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatarPicture {
+  height: 100px;
+  border-radius: 50%;
+}
+.header {
+  align-self: flex-start;
+  color: rgb(8, 8, 78);
+  font-size: 1.5rem;
+}
+.userP {
+  color: rgb(0, 195, 255);
+}
+.btnMainBlue {
+  color: white;
+  background-color: #45b4d0;
+  padding: 8px 25px;
+  border-radius: 50px;
+}
+.btnMainBlue:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+.btnMainBlue:active {
+  transform: translateY(-0.5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.profileGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+.profileGrid div {
+  background-color: rgb(238, 238, 238);
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+}
+.profileGrid h2 {
+  font-size: 2.5rem;
+}
+.gridCard1 {
+  border-left: 5px solid #3c56a9;
+}
+.gridCard1 h2 {
+  color: #3c56a9;
+}
+.gridCard2 {
+  border-left: 5px solid #f1c312;
+}
+.gridCard2 h2 {
+  color: #f1c312;
+}
+.gridCard3 {
+  border-left: 5px solid #45b4d0;
+}
+.gridCard3 h2 {
+  color: #45b4d0;
+}

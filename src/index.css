@@ -9,9 +9,9 @@
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
-  color: white;
 }
 body {
+  color: white;
 }
 .header-main {
   /* background-color: black; */
@@ -159,4 +159,7 @@ footer {
   background-image: url(./assets/header-background2.jpg);
   background-size: cover;
   min-height: 100vh;
+}
+.user-panel {
+  color: black;
 }
