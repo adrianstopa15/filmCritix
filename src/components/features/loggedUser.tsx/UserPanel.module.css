@@ -45,9 +45,11 @@
 
 .navbarLeft {
   width: auto;
-  padding-right: 2rem;
+  /* padding-right: 2rem; */
   background-color: white;
   box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+  margin-top: 4.5rem;
+  padding-top: 2rem;
 }
 .heroContainerBox {
   background-color: white;
@@ -55,7 +57,7 @@
   border-radius: 1%;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
   margin: 12rem auto;
-  height: 45rem;
+  height: 46rem;
 }
 .heroContainerContent {
   margin: 1.2rem 2rem;
@@ -70,6 +72,7 @@
   padding-left: 1.5rem;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  padding-right: 2rem;
 }
 .userPanelContent li:hover {
   background-color: #45b4d01c;
@@ -92,6 +95,9 @@
 .userP {
   color: rgb(0, 195, 255);
 }
+.adminP {
+  color: rgb(218, 196, 7);
+}
 .btnMainBlue {
   color: white;
   background-color: #45b4d0;
@@ -106,6 +112,21 @@
   transform: translateY(-0.5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+.btnMainGreen {
+  color: white;
+  background-color: #22be2a;
+  padding: 8px 25px;
+  border-radius: 50px;
+}
+.btnMainGreen:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+.btnMainGreen:active {
+  transform: translateY(-0.5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .btnMainDisabled {
   color: white;
   background-color: #4a5355;
@@ -150,6 +171,35 @@
 .userDetailsContainer p {
   margin-bottom: 32px;
 }
+.inputPanel {
+  padding: 0.5rem 1rem;
+  background-color: rgba(2, 95, 235, 0.185);
+  border: solid rgb(134, 132, 132) 1px;
+  border-radius: 5px;
+  color: rgb(58, 57, 57);
+  box-shadow: 0 5px 13px rgba(0, 0, 0, 0.1);
+}
+.formGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.formGroup label {
+  width: 100px;
+  text-align: right;
+  margin-right: 15px;
+}
+.textArea {
+  min-width: 25rem;
+  min-height: 15rem;
+  resize: none;
+  padding: 8px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 5px 13px rgba(0, 0, 0, 0.1);
+  background-color: rgba(2, 95, 235, 0.185);
+}
 @media screen and (max-width: 1200px) {
   .userPanelContent {
     flex-direction: column;
@@ -163,5 +213,16 @@
     grid-template-columns: 1fr;
   }
   .navbarLeft {
+    margin-top: 4.5rem;
+    padding-top: 0;
+  }
+  .textArea {
+    min-width: 5vh;
+    min-height: 20vh;
+  }
+  .formGroup label {
+    width: 50px;
+    text-align: right;
+    margin-right: 15px;
   }
 }

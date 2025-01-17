@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +8,7 @@ import movie3 from "../../../assets/movie3.jpg";
 import movie4 from "../../../assets/movie4.jpg";
 import movie5 from "../../../assets/movie5.jpg";
 import { useAuth } from "../../../store/AuthContext";
+import axios from "axios";
 const settings = {
   dots: true,
   infinite: true,
@@ -47,7 +48,26 @@ const fakeMovies = [
   { name: "Zielona Mila", genre: "thriller", img: movie5 },
   { name: "Zielona Mila", genre: "thriller", img: movie2 },
 ];
+
 export default function Mid() {
+  const [reviews, setReviews] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/showReviews");
+      setReviews(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Nie udało się pobrać recenzji", error);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
   const { isLoggedIn } = useAuth();
   return (
     <section className="mid">

@@ -4,7 +4,7 @@ import styles from "./UserPanel.module.css";
 import { useAuth } from "../../../store/AuthContext";
 import { stringify } from "querystring";
 export default function UserPanelSettings() {
-  const { name, surname } = useAuth();
+  const { name, surname, czyAdmin } = useAuth();
 
   return (
     <>
@@ -16,7 +16,11 @@ export default function UserPanelSettings() {
       <p className="lg:text-2xl mb-2">
         {name} {surname}
       </p>
-      <p className={`${styles.userP} lg:text-xl`}>Użytkownik</p>
+      {!czyAdmin ? (
+        <p className={`${styles.userP} lg:text-xl`}>Użytkownik</p>
+      ) : (
+        <p className={`${styles.adminP} lg:text-xl`}>Admin</p>
+      )}
 
       <button className={`${styles.btnMainBlue} mt-12`}>Edytuj Profil</button>
       <div className={`${styles.profileGrid} mt-20`}>

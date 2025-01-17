@@ -4,7 +4,10 @@ import styles from "./UserPanel.module.css";
 import userIcon from "../../../assets/userIcon.png";
 import securityIcon from "../../../assets/securityIcon.png";
 import statusIcon from "../../../assets/statusIcon.png";
+import filmReveiewIcon from "../../../assets/filmReviewIcon.png";
+import { useAuth } from "../../../store/AuthContext";
 export default function NavbarLeft() {
+  const { czyAdmin } = useAuth();
   return (
     <nav className={styles.navbarLeft}>
       <ul>
@@ -12,11 +15,22 @@ export default function NavbarLeft() {
           to="settings"
           className={({ isActive }) => (isActive ? styles.selected : "")}
         >
-          <li className={`mt-32`}>
+          <li className={``}>
             <img src={userIcon} className={styles.navbarIcon} />
             Ustawienia konta
           </li>
         </NavLink>
+        {!czyAdmin && (
+          <NavLink
+            to="filmReview"
+            className={({ isActive }) => (isActive ? styles.selected : "")}
+          >
+            <li className={``}>
+              <img src={filmReveiewIcon} className={styles.navbarIcon} />
+              Panel recenzji
+            </li>
+          </NavLink>
+        )}
         <NavLink
           to="security"
           className={({ isActive }) => (isActive ? styles.selected : "")}

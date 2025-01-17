@@ -7,6 +7,7 @@ import UserPanel from "./components/features/loggedUser.tsx/UserPanel";
 import UserPanelSettings from "./components/features/loggedUser.tsx/UserPanelSettings";
 import UserPanelSecurity from "./components/features/loggedUser.tsx/UserPanelSecurity";
 import UserPanelStatus from "./components/features/loggedUser.tsx/UserPanelStatus";
+import FilmReviewPanel from "./components/features/loggedUser.tsx/loggedAdmin/FilmReviewPanel";
 function App() {
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
           <Route path="settings" element={<UserPanelSettings />} />
           <Route path="security" element={<UserPanelSecurity />} />
           <Route path="status" element={<UserPanelStatus />} />
+          <Route path="filmReview" element={<FilmReviewPanel />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
