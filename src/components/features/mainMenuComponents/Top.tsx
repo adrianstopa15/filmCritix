@@ -26,7 +26,11 @@ export default function Top() {
           </nav>
         </section>
         <header className="header-main">
-          <div className="header-container flex justify-center items-center text-center">
+          <div
+            className={`${
+              !isLoggedIn ? "header-container" : "header-container--mini"
+            } flex justify-center items-center text-center`}
+          >
             {!isLoggedIn ? (
               <div className="header-textContainer">
                 <h1 className="text-3xl font-extrabold tracking-wider md:leading-relaxed md:text-7xl">

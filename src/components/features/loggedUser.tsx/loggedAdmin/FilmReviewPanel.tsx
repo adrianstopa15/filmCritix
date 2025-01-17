@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "../UserPanel.module.css";
 import axios from "axios";
 import { useDropzone } from "react-dropzone";
+import Swal from "sweetalert2";
+import { Navigate } from "react-router-dom";
 export default function FilmReviewPanel() {
   const [file, setFile] = useState<File | null>(null);
   const [formData, setFormData] = useState({
@@ -57,17 +59,27 @@ export default function FilmReviewPanel() {
           },
         }
       );
-      console.log("Recenzja dodana", response.data);
+
+      Swal.fire({
+        position: "top",
+        title: "Recenzja została dodana!",
+        text: "Dziękujemy za dodaną recenzję.",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false,
+        willClose: () => {
+          window.location.reload();
+        },
+      });
     } catch (error) {
+      Swal.fire({
+        title: "Błąd",
+        text: "Nie udało się dodać recenzji. Spróbuj ponownie.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
       console.error("Nie udało się dodać recenzji", error);
     }
-  };
-
-  const handleFileChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement & {
-      files: FileList;
-    };
-    setFile(target.files[0]);
   };
 
   return (
@@ -87,6 +99,7 @@ export default function FilmReviewPanel() {
               name="filmName"
               id="filmName"
               onChange={handleChange}
+              required
             />
           </div>
           <div className={styles.formGroup}>
@@ -97,6 +110,7 @@ export default function FilmReviewPanel() {
               name="description"
               id="description"
               onChange={handleChange}
+              required
             />
           </div>
           <div className={styles.formGroup}>
@@ -105,6 +119,7 @@ export default function FilmReviewPanel() {
               className={styles.inputPanel}
               name="genre"
               onChange={handleChange}
+              required
             >
               <option value="">wybierz gatunek</option>
               <option value="komedia">komedia</option>

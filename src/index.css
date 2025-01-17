@@ -63,6 +63,15 @@ body {
   max-width: 150rem;
   margin: 0 auto;
 }
+.header-container--mini {
+  /* background-image: url(./assets/header-background2.jpg); */
+  background-size: cover;
+  object-fit: contain;
+  height: 2rem;
+  /* padding-bottom: 55rem; */
+  max-width: 150rem;
+  margin: 0 auto;
+}
 .header-textContainer {
   max-width: 60rem;
 }

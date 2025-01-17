@@ -49,8 +49,16 @@ const fakeMovies = [
   { name: "Zielona Mila", genre: "thriller", img: movie2 },
 ];
 
+type Review = {
+  filmName: string;
+  description: string;
+  genre: string;
+  review: string;
+  file: string;
+};
+
 export default function Mid() {
-  const [reviews, setReviews] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchReviews = async () => {
@@ -77,9 +85,13 @@ export default function Mid() {
             <>
               <p className="p-medium mb-8 mt-16">Najnowsze Recenzje</p>
               <Slider {...settings}>
-                {fakeMovies.map((m, index) => (
+                {reviews.map((r, index) => (
                   <div className="movie-card" key={index}>
-                    <img src={m.img} className="movie-image" alt={m.name} />
+                    <img
+                      src={`http://localhost:5000/${r.file}`}
+                      className="movie-image"
+                      alt={r.filmName}
+                    />
                   </div>
                 ))}
               </Slider>
@@ -88,25 +100,37 @@ export default function Mid() {
             <>
               <p className="p-medium mb-8 mt-16">Najlepsze recenzje</p>
               <Slider {...settings}>
-                {fakeMovies.map((m, index) => (
+                {reviews.map((r, index) => (
                   <div className="movie-card" key={index}>
-                    <img src={m.img} className="movie-image" alt={m.name} />
+                    <img
+                      src={`http://localhost:5000/${r.file}`}
+                      className="movie-image"
+                      alt={r.filmName}
+                    />
                   </div>
                 ))}
               </Slider>
               <p className="p-medium mb-8 mt-16">Najnowsze recenzje</p>
               <Slider {...settings2}>
-                {fakeMovies.map((m, index) => (
+                {reviews.map((r, index) => (
                   <div className="movie-card" key={index}>
-                    <img src={m.img} className="movie-image" alt={m.name} />
+                    <img
+                      src={`http://localhost:5000/${r.file}`}
+                      className="movie-image"
+                      alt={r.filmName}
+                    />
                   </div>
                 ))}
               </Slider>
               <p className="p-medium mb-8 mt-16">Przeczytaj ponownie</p>
               <Slider {...settings3}>
-                {fakeMovies.map((m, index) => (
+                {reviews.map((r, index) => (
                   <div className="movie-card" key={index}>
-                    <img src={m.img} className="movie-image" alt={m.name} />
+                    <img
+                      src={`http://localhost:5000/${r.file}`}
+                      className="movie-image"
+                      alt={r.filmName}
+                    />
                   </div>
                 ))}
               </Slider>

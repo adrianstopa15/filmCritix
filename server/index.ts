@@ -19,6 +19,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/mydb")
   .then(() => console.log("connected to mongoDB"))
@@ -31,7 +32,7 @@ app.get("/", (req: Request, res: Response) => {
 //multer:
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../src/assets/uploads");
+    cb(null, "uploads");
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
