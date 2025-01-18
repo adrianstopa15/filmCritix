@@ -8,14 +8,14 @@ export default function Footer() {
     <footer>
       <div className="footer-container flex items-center justify-center">
         {!isLoggedIn ? (
-          <div>
-            <p className="mb-4">
+          <div className="max-w-80 md:max-w-none">
+            <p className="text-sm lg:text-xl xl:text-2xl mb-4">
               Zaczynamy przeglądać? Wprowadź adres e‑mail, aby utworzyć konto.
             </p>
             <div className="flex items-center justify-center">
               <input placeholder="Adres e-mail" className="inputMain mr-8" />
               <NavLink to="/registerPanel">
-                <button className="button-red font-bold py-3 px-10 text-2xl">
+                <button className="text-xs xl:text-2xl button-red font-bold py-3 px-2 lg:px-10">
                   Rozpocznij {">"}
                 </button>
               </NavLink>

@@ -9,7 +9,7 @@ export default function Top() {
       <div className="top-container">
         <section className="navbar">
           <nav className="navbar-container">
-            <p className="pNavbar text-2xl lg:text-4xl font-bold">
+            <p className="pNavbar text-xl md:text-2xl lg:text-4xl font-bold">
               Film<span className="text-red-500">Critix</span>
             </p>
             {!isLoggedIn ? (
@@ -33,11 +33,11 @@ export default function Top() {
           >
             {!isLoggedIn ? (
               <div className="header-textContainer">
-                <h1 className="text-3xl font-extrabold tracking-wider md:leading-relaxed md:text-7xl">
+                <h1 className="text-sm lg:text-2xl xl:text-5xl    font-extrabold tracking-wider md:leading-relaxed">
                   Propozycje filmowe, recenzje i wiele więcej bez ogarniczeń
                 </h1>
 
-                <p className="text-xl mt-12 mb-4 md:text-2xl text-gray-200">
+                <p className="text-sm lg:text-xl mt-12 mb-4 xl:text-2xl text-gray-200">
                   Zaczynamy przeglądać? Wprowadź adres e‑mail, aby utworzyć
                   konto.
                 </p>
@@ -47,7 +47,7 @@ export default function Top() {
                     className="inputMain mr-8"
                   />
                   <NavLink to="/registerPanel">
-                    <button className="button-red font-bold py-3 px-10 text-2xl">
+                    <button className="button-red text-sm lg:text-2xl font-bold py-3 md:px-10">
                       Rozpocznij {">"}
                     </button>
                   </NavLink>

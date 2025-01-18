@@ -37,17 +37,6 @@ const settings3 = {
   autoplay: false,
   cssEase: "linear",
 };
-const fakeMovies = [
-  { name: "Zielona Mila", genre: "thriller", img: movie1 },
-  { name: "Zielona Mila", genre: "thriller", img: movie2 },
-  { name: "Zielona Mila", genre: "thriller", img: movie3 },
-  { name: "Zielona Mila", genre: "thriller", img: movie4 },
-  { name: "Zielona Mila", genre: "thriller", img: movie2 },
-  { name: "Zielona Mila", genre: "thriller", img: movie4 },
-  { name: "Zielona Mila", genre: "thriller", img: movie1 },
-  { name: "Zielona Mila", genre: "thriller", img: movie5 },
-  { name: "Zielona Mila", genre: "thriller", img: movie2 },
-];
 
 type Review = {
   filmName: string;
@@ -83,7 +72,9 @@ export default function Mid() {
         <div className="moviesContainer px-8">
           {!isLoggedIn ? (
             <>
-              <p className="p-medium mb-8 mt-16">Najnowsze Recenzje</p>
+              <p className="text-sm lg:text-2xl xl:text-3xl mb-8 mt-16">
+                Najnowsze Recenzje
+              </p>
               <Slider {...settings}>
                 {reviews.map((r, index) => (
                   <div className="movie-card" key={index}>
@@ -98,7 +89,9 @@ export default function Mid() {
             </>
           ) : (
             <>
-              <p className="p-medium mb-8 mt-16">Najlepsze recenzje</p>
+              <p className="text-sm lg:text-2xl xl:text-3xl  mb-8 mt-16">
+                Najlepsze recenzje
+              </p>
               <Slider {...settings}>
                 {reviews.map((r, index) => (
                   <div className="movie-card" key={index}>
@@ -110,7 +103,9 @@ export default function Mid() {
                   </div>
                 ))}
               </Slider>
-              <p className="p-medium mb-8 mt-16">Najnowsze recenzje</p>
+              <p className="text-sm lg:text-2xl xl:text-3xl  mb-8 mt-16">
+                Najnowsze recenzje
+              </p>
               <Slider {...settings2}>
                 {reviews.map((r, index) => (
                   <div className="movie-card" key={index}>
@@ -122,7 +117,9 @@ export default function Mid() {
                   </div>
                 ))}
               </Slider>
-              <p className="p-medium mb-8 mt-16">Przeczytaj ponownie</p>
+              <p className="text-sm lg:text-2xl xl:text-3xl  mb-8 mt-16">
+                Przeczytaj ponownie
+              </p>
               <Slider {...settings3}>
                 {reviews.map((r, index) => (
                   <div className="movie-card" key={index}>

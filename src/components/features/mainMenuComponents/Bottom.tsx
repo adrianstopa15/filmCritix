@@ -26,7 +26,9 @@ export default function Bottom() {
   return (
     <section className="bottom">
       <div className="bottom-container">
-        <p className="p-medium mb-8">Dlaczego warto dołączyć</p>
+        <p className="text-sm lg:text-2xl xl:text-3xl mb-8">
+          Dlaczego warto dołączyć
+        </p>
         <div className="bottom-grid">
           {loggedProfits.map((p) => (
             <div className="grid-card py-8 px-12 pb-32">

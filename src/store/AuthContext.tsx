@@ -1,6 +1,13 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 
+type Review = {
+  filmName: string;
+  description: string;
+  genre: string;
+  review: string;
+  file: string;
+};
 interface AuthContextType {
   isLoggedIn: boolean;
   czyAdmin: boolean;
@@ -9,6 +16,9 @@ interface AuthContextType {
   name: string;
   surname: string;
   phone: string;
+  reviews: Review[];
+  isLoadingReviews: boolean;
+  fetchReviews: () => Promise<void>;
   checkAuthStatus: () => void;
 }
 
@@ -20,6 +30,9 @@ const AuthContext = createContext<AuthContextType>({
   name: "",
   surname: "",
   phone: "",
+  reviews: [],
+  isLoadingReviews: true,
+  fetchReviews: async () => {},
   checkAuthStatus: () => {},
 });
 
@@ -33,7 +46,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
-  // const []
+  //recenzje
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(true);
   const checkAuthStatus = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/me", {
@@ -52,9 +67,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       setCzyAdmin(false);
     }
   };
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/showReviews");
+      setReviews(response.data);
+      setIsLoadingReviews(false);
+    } catch (error) {
+      console.error("Nie udało się pobrać recenzji", error);
+      setIsLoadingReviews(false);
+    }
+  };
 
   useEffect(() => {
     checkAuthStatus();
+    fetchReviews();
   }, []);
 
   return (
@@ -67,6 +93,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         phone,
         login,
         email,
+        reviews,
+        isLoadingReviews,
+        fetchReviews,
         checkAuthStatus,
       }}
     >

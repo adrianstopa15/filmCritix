@@ -98,7 +98,7 @@ body {
   margin: 0 auto;
 }
 .p-medium {
-  font-size: 2rem;
+  /* font-size: 2rem; */
 }
 .movie-image {
   position: relative;
@@ -159,11 +159,7 @@ footer {
   max-width: 150rem;
   margin: 0 auto;
 }
-.test-kontener {
-  /* background-image: url(./assets/header-background2.jpg);
-  background-size: cover;
-  min-height: 200rem; */
-}
+
 .login-section {
   background-image: url(./assets/header-background2.jpg);
   background-size: cover;
@@ -178,4 +174,13 @@ footer {
 }
 .avatarIcon:hover {
   filter: brightness(115%);
+}
+
+@media screen and (max-width: 1279px) {
+  .inputMain {
+    padding: 0.3rem 0.5rem;
+    background-color: rgba(8, 8, 8, 0.699);
+    border: solid rgb(134, 132, 132) 1px;
+    border-radius: 2%;
+  }
 }

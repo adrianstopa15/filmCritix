@@ -5,6 +5,7 @@ import userIcon from "../../../assets/userIcon.png";
 import securityIcon from "../../../assets/securityIcon.png";
 import statusIcon from "../../../assets/statusIcon.png";
 import filmReveiewIcon from "../../../assets/filmReviewIcon.png";
+import adminIcon from "../../../assets/adminIcon.png";
 import { useAuth } from "../../../store/AuthContext";
 export default function NavbarLeft() {
   const { czyAdmin } = useAuth();
@@ -21,15 +22,26 @@ export default function NavbarLeft() {
           </li>
         </NavLink>
         {!czyAdmin && (
-          <NavLink
-            to="filmReview"
-            className={({ isActive }) => (isActive ? styles.selected : "")}
-          >
-            <li className={``}>
-              <img src={filmReveiewIcon} className={styles.navbarIcon} />
-              Panel recenzji
-            </li>
-          </NavLink>
+          <>
+            <NavLink
+              to="filmReview"
+              className={({ isActive }) => (isActive ? styles.selected : "")}
+            >
+              <li className={``}>
+                <img src={filmReveiewIcon} className={styles.navbarIcon} />
+                Panel recenzji
+              </li>
+            </NavLink>
+            <NavLink
+              to="adminPanel"
+              className={({ isActive }) => (isActive ? styles.selected : "")}
+            >
+              <li className={``}>
+                <img src={adminIcon} className={styles.navbarIcon} />
+                Panel admina
+              </li>
+            </NavLink>
+          </>
         )}
         <NavLink
           to="security"

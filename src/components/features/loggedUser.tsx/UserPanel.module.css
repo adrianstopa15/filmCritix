@@ -112,6 +112,50 @@
   transform: translateY(-0.5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+.btnMainRed {
+  color: white;
+  background-color: #da4338;
+  padding: 3px 12px;
+  border-radius: 50px;
+  font-size: small;
+}
+.btnMainRed:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+.btnMainRed:active {
+  transform: translateY(-0.5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.btnMainOrange {
+  color: white;
+  background-color: #e27916;
+  padding: 3px 12px;
+  border-radius: 50px;
+  font-size: small;
+}
+.btnMainOrange:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+.btnMainOrange:active {
+  transform: translateY(-0.5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.btnMainBlueMini {
+  color: white;
+  background-color: #45b4d0;
+  padding: 6px 10px;
+  border-radius: 50px;
+}
+.btnMainBlueMini:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+.btnMainBlueMini:active {
+  transform: translateY(-0.5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 .btnMainGreen {
   color: white;
   background-color: #22be2a;
@@ -200,6 +244,87 @@
   box-shadow: 0 5px 13px rgba(0, 0, 0, 0.1);
   background-color: rgba(2, 95, 235, 0.185);
 }
+
+.tete {
+  display: flex;
+  justify-content: space-evenly;
+}
+.filmEditCard {
+  position: relative;
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  background: linear-gradient(145deg, #3a4ff2, #2d3fcc);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  padding: 1rem 23rem 1rem 0;
+  border: 1px solid rgba(170, 170, 170, 0.842);
+  color: white;
+}
+.usersEditCard {
+  position: relative;
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  background: linear-gradient(145deg, #3a4ff2, #2d3fcc);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  padding: 1rem 23rem 1rem 0;
+  border: 1px solid rgba(170, 170, 170, 0.842);
+  color: white;
+}
+.usersEditCard:hover {
+  filter: brightness(104%);
+}
+.filmEditCard:hover {
+  filter: brightness(104%);
+}
+.filmEditCardButtons {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 15px;
+}
+.usersEditCardButtons {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 15px;
+}
+
+.filmEditContainer {
+  border-radius: 5px;
+  /* background-color: #ccc; */
+  max-height: 35rem;
+
+  overflow-y: scroll;
+}
+.usersEditContainer {
+  border-radius: 5px;
+  /* background-color: #ccc; */
+  max-height: 30rem;
+
+  overflow-y: scroll;
+}
+
+.userCreatorForm input {
+  margin-bottom: 15px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a5b2f8;
+  border-radius: 3px;
+}
+
 @media screen and (max-width: 1200px) {
   .userPanelContent {
     flex-direction: column;

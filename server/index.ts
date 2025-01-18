@@ -130,6 +130,20 @@ app.post("/api/login", async (req: Request, res: Response) => {
       .json({ error: "Nie udało się zalogować użytkownika" });
   }
 });
+app.post("/api/logout", async (req: Request, res: Response) => {
+  try {
+    res.cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+    });
+    return res.status(200).json({ message: "Użytkownik został wylogowany." });
+  } catch (error) {
+    console.error("Nie udało się wylogować użytkownika", error);
+    return res
+      .status(500)
+      .json({ error: "Wystąpił problem z wylogowaniem użytkownika" });
+  }
+});
 
 app.get("/api/me", async (req: Request, res: Response) => {
   try {
@@ -166,6 +180,22 @@ app.get("/api/me", async (req: Request, res: Response) => {
     return res
       .status(500)
       .json({ error: "Wystąpił problem z odczytywaniem danych użytkownika" });
+  }
+});
+
+app.get("/api/getUsers", async (req: Request, res: Response) => {
+  try {
+    const users = await User.find();
+    if (!users) {
+      console.error("nie znaleziono użytkowników");
+    }
+
+    return res.status(200).json(users);
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ message: "Nie udało się wyświetlić użytkowników" });
   }
 });
 
