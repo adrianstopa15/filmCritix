@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../UserPanel.module.css";
 import axios from "axios";
+import Swal from "sweetalert2";
 export default function AdminPanel() {
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({});
@@ -37,6 +38,42 @@ export default function AdminPanel() {
     }
   };
 
+  const deleteUser = async (id: string) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/deleteUser/${id}`,
+        { withCredentials: true }
+      );
+      Swal.fire({
+        title: "Sukces!",
+        text: "Użytkownik został pomyślnie usunięty.",
+        icon: "success",
+        confirmButtonText: "OK",
+        position: "top",
+        timer: 2000,
+      }).then(() => {
+        window.location.reload();
+      });
+    } catch (error: any) {
+      if (error.response && error.response.status === 403) {
+        Swal.fire({
+          title: "Błąd!",
+          text: "Nie możesz usunąć swojego konta.",
+          icon: "warning",
+          confirmButtonText: "OK",
+          position: "top",
+        });
+      } else {
+        Swal.fire({
+          title: "Błąd!",
+          text: "Nie udało się usunąć użytkownika. Spróbuj ponownie.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    }
+  };
+
   useEffect(() => {
     showUsers();
   }, []);
@@ -54,7 +91,12 @@ export default function AdminPanel() {
                   login: {u.login} email: {u.email}
                 </p>
                 <div className={styles.usersEditCardButtons}>
-                  <button className={`${styles.btnMainRed}`}>usuń</button>
+                  <button
+                    className={`${styles.btnMainRed}`}
+                    onClick={() => deleteUser(u._id)}
+                  >
+                    usuń
+                  </button>
                 </div>
               </div>
             ))}

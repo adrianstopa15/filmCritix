@@ -85,6 +85,26 @@ export default function FilmReviewPanel() {
     }
   };
 
+  const deleteReview = async (id: string) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/deleteReview/${id}`
+      );
+      Swal.fire({
+        title: "Sukces!",
+        text: "Użytkownik został pomyślnie usunięty.",
+        icon: "success",
+        confirmButtonText: "OK",
+        position: "top",
+        timer: 2000,
+      }).then(() => {
+        window.location.reload();
+      });
+      window.location.reload();
+    } catch (error) {
+      console.error("Błąd podczas usuwania recenzji:", error);
+    }
+  };
   return (
     <>
       <h1 className={`${styles.header}`}>
@@ -200,7 +220,12 @@ export default function FilmReviewPanel() {
                 <button className={`${styles.btnMainOrange} mr-2`}>
                   edytuj
                 </button>
-                <button className={`${styles.btnMainRed}`}>usuń</button>
+                <button
+                  className={`${styles.btnMainRed}`}
+                  onClick={() => deleteReview(r._id)}
+                >
+                  usuń
+                </button>
               </div>
             </div>
           ))}

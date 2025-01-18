@@ -199,6 +199,46 @@ app.get("/api/getUsers", async (req: Request, res: Response) => {
   }
 });
 
+app.delete("/api/deleteUser/:id", async (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res
+        .status(401)
+        .json({ error: "Brak tokenu, użytkownik nie jest zalogowany" });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+    const { userId } = decoded as { userId: string };
+    if (!userId) {
+      return res.status(500).json({ error: "Nie podano ID użytkownika" });
+    }
+
+    const userIdToDelete = req.params.id;
+
+    if (userId === userIdToDelete) {
+      return res
+        .status(403)
+        .json({ error: "Nie możesz usunąć swojego konta." });
+    }
+
+    const deletedUser = await User.findByIdAndDelete(userIdToDelete);
+    if (!deletedUser) {
+      return res
+        .status(404)
+        .json({ error: "nie znaleziono użytkownika o podanym ID" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Użytkownik został usunięty z bazy.", deletedUser });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ error: "Nie udało się usunąć użytkownika o podanym id" });
+  }
+});
+
 app.post(
   "/api/addReview",
   upload.single("file"),
@@ -238,6 +278,23 @@ app.get("/api/showReviews", async (req: Request, res: Response) => {
     return res
       .status(500)
       .json({ error: "Pobieranie recenzji zakończone niepowodzeniem." });
+  }
+});
+app.delete("/api/deleteReview/:id", async (req: Request, res: Response) => {
+  try {
+    const reviewId = req.params.id;
+    if (!reviewId) {
+      return res.status(401).json({ error: "nie podano id recenzji" });
+    }
+    const deletedReview = await Film.findByIdAndDelete(reviewId);
+    if (!deletedReview) {
+      return res
+        .status(404)
+        .json({ error: "Nie znaleziono recenzji o takim id" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ error: "Nie udało się usunąć recenzji" });
   }
 });
 
