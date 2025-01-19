@@ -10,13 +10,12 @@ export default function AdminPanel() {
     const response = await axios.get("http://localhost:5000/api/getUsers");
     setUsers(response.data);
   };
-
   const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, type, value, checked } = e.target;
 
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
@@ -123,6 +122,7 @@ export default function AdminPanel() {
               onChange={handleRegisterChange}
               className={styles.inputPanel}
               placeholder="E-mail"
+              required
             />
             <input
               type="text"
@@ -131,6 +131,7 @@ export default function AdminPanel() {
               onChange={handleRegisterChange}
               className={styles.inputPanel}
               placeholder="Login"
+              required
             />
             <input
               type="password"
@@ -139,6 +140,7 @@ export default function AdminPanel() {
               onChange={handleRegisterChange}
               className={styles.inputPanel}
               placeholder="Hasło"
+              required
             />
             <input
               className={styles.inputPanel}
@@ -147,6 +149,7 @@ export default function AdminPanel() {
               name="name"
               onChange={handleRegisterChange}
               placeholder="Imie"
+              required
             />
             <input
               className={styles.inputPanel}
@@ -155,6 +158,7 @@ export default function AdminPanel() {
               onChange={handleRegisterChange}
               name="surname"
               placeholder="Nazwisko"
+              required
             />
             <input
               className={styles.inputPanel}
@@ -163,9 +167,17 @@ export default function AdminPanel() {
               name="phone"
               onChange={handleRegisterChange}
               placeholder="Telefon"
+              required
             />
             <span>
-              Admin <input type="checkbox" id="czyAdmin" name="czyAdmin" />
+              Admin{" "}
+              <input
+                type="checkbox"
+                id="czyAdmin"
+                name="czyAdmin"
+                onChange={handleRegisterChange}
+                required
+              />
             </span>
             <button
               className={`${styles.btnMainGreen} px-14 py-2 mb-12 mt-8`}

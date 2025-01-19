@@ -87,22 +87,43 @@ export default function FilmReviewPanel() {
 
   const deleteReview = async (id: string) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/api/deleteReview/${id}`
-      );
-      Swal.fire({
-        title: "Sukces!",
-        text: "Użytkownik został pomyślnie usunięty.",
-        icon: "success",
-        confirmButtonText: "OK",
-        position: "top",
-        timer: 2000,
-      }).then(() => {
-        window.location.reload();
+      const result = await Swal.fire({
+        title: "Czy na pewno chcesz usunąć recenzję?",
+        text: "Ta operacja jest nieodwracalna!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Tak, usuń",
+        cancelButtonText: "Nie, anuluj",
+        reverseButtons: true,
       });
-      window.location.reload();
+
+      if (result.isConfirmed) {
+        await axios.delete(`http://localhost:5000/api/deleteReview/${id}`);
+        await Swal.fire({
+          title: "Usunięto!",
+          text: "Recenzja została pomyślnie usunięta.",
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+        window.location.reload();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        await Swal.fire({
+          title: "Anulowano",
+          text: "Recenzja nie została usunięta.",
+          icon: "info",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      }
     } catch (error) {
       console.error("Błąd podczas usuwania recenzji:", error);
+      await Swal.fire({
+        title: "Błąd",
+        text: "Wystąpił problem podczas usuwania recenzji. Spróbuj ponownie.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
   return (

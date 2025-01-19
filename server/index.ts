@@ -292,6 +292,8 @@ app.delete("/api/deleteReview/:id", async (req: Request, res: Response) => {
         .status(404)
         .json({ error: "Nie znaleziono recenzji o takim id" });
     }
+
+    return res.status(200).json({ message: "Pomyślnie usunięto recenzję" });
   } catch (error) {
     console.error(error);
     return res.status(400).json({ error: "Nie udało się usunąć recenzji" });
