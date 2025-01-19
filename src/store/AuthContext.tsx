@@ -18,6 +18,7 @@ interface AuthContextType {
   phone: string;
   reviews: Review[];
   isLoadingReviews: boolean;
+  isAuthLoading: boolean;
   fetchReviews: () => Promise<void>;
   checkAuthStatus: () => void;
 }
@@ -32,6 +33,7 @@ const AuthContext = createContext<AuthContextType>({
   phone: "",
   reviews: [],
   isLoadingReviews: true,
+  isAuthLoading: true,
   fetchReviews: async () => {},
   checkAuthStatus: () => {},
 });
@@ -40,6 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [czyAdmin, setCzyAdmin] = useState(false);
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
@@ -50,6 +53,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(true);
   const checkAuthStatus = async () => {
+    setIsAuthLoading(true);
     try {
       const response = await axios.get("http://localhost:5000/api/me", {
         withCredentials: true,
@@ -65,15 +69,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     } catch (error) {
       setIsLoggedIn(false);
       setCzyAdmin(false);
+    } finally {
+      setIsAuthLoading(false);
     }
   };
   const fetchReviews = async () => {
+    setIsLoadingReviews(true);
     try {
       const response = await axios.get("http://localhost:5000/api/showReviews");
       setReviews(response.data);
-      setIsLoadingReviews(false);
     } catch (error) {
       console.error("Nie udało się pobrać recenzji", error);
+    } finally {
       setIsLoadingReviews(false);
     }
   };
@@ -95,6 +102,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         email,
         reviews,
         isLoadingReviews,
+        isAuthLoading,
         fetchReviews,
         checkAuthStatus,
       }}

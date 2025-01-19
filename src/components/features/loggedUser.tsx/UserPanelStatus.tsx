@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./UserPanel.module.css";
 import { useAuth } from "../../../store/AuthContext";
-export default function userPanelStatus() {
+export default function UserPanelStatus() {
   const { czyAdmin } = useAuth();
   return (
     <>
@@ -16,12 +16,16 @@ export default function userPanelStatus() {
         </p>
       )}
       {!czyAdmin && (
-        <p>
-          Do możliwości złożenia wniosku o status super użytkownika brakuje Ci
-          <strong> 12 przeczytanych recenzji</strong>
-        </p>
+        <>
+          <p>
+            Do możliwości złożenia wniosku o status admina brakuje Ci
+            <strong> 12 przeczytanych recenzji</strong>
+          </p>
+          <button className={`${styles.btnMainDisabled} mt-6`}>
+            Złóż Wniosek
+          </button>
+        </>
       )}
-      <button className={`${styles.btnMainDisabled} mt-6`}>Złóż Wniosek</button>
     </>
   );
 }

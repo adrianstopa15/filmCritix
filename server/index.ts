@@ -63,7 +63,7 @@ export default upload;
 
 app.post("/api/register", async (req: Request, res: Response) => {
   try {
-    const { email, login, password, name, surname, phone } = req.body;
+    const { email, login, password, name, surname, phone, czyAdmin } = req.body;
 
     const existingUser = await User.findOne({ email, login });
     if (existingUser) {
@@ -82,7 +82,7 @@ app.post("/api/register", async (req: Request, res: Response) => {
       surname,
       phone,
       password: hashedPassword,
-      czyAdmin: false,
+      czyAdmin,
     });
 
     await newUser.save();
@@ -318,5 +318,46 @@ app.delete("/api/deleteReview/:id", async (req: Request, res: Response) => {
     return res.status(400).json({ error: "Nie udało się usunąć recenzji" });
   }
 });
+app.put(
+  "/api/editReview/:id",
+  upload.single("file"),
+  async (req: Request, res: Response) => {
+    try {
+      const { filmName, description, genre, review } = req.body;
+      const reviewId = req.params.id;
+      if (!reviewId) {
+        return res.status(400).json({ error: "Wprowadzono niepoprawne id" });
+      }
+      if (!filmName || !description || !genre || !review) {
+        return res.status(400).json({ error: "Wszystkie pola są wymagane" });
+      }
+      const updateData: any = {
+        filmName,
+        description,
+        genre,
+        review,
+      };
+      if (req.file) {
+        updateData.file = req.file.path;
+      }
+
+      const updatedReview = await Film.findByIdAndUpdate(reviewId, updateData, {
+        new: true,
+      });
+      if (!updatedReview) {
+        console.error("Nie znaleziono recenzji");
+      }
+      console.log("Zaktualizowano recenzję", updatedReview);
+      return res
+        .status(200)
+        .json({ message: "Recenzja została zaktualizowana" });
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ error: "Nie udało się zaktualizować recenzji" });
+    }
+  }
+);
 
 app.listen(PORT, () => console.log(`Server is running at port ${PORT}`));

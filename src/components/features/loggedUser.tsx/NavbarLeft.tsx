@@ -21,7 +21,7 @@ export default function NavbarLeft() {
             Ustawienia konta
           </li>
         </NavLink>
-        {!czyAdmin && (
+        {czyAdmin && (
           <>
             <NavLink
               to="filmReview"

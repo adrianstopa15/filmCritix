@@ -26,6 +26,16 @@ export default function AdminPanel() {
         "http://localhost:5000/api/register",
         formData
       );
+      Swal.fire({
+        title: "Sukces!",
+        text: "Użytkownik pomyślnie zarejestrowany.",
+        icon: "success",
+        confirmButtonText: "OK",
+        position: "top",
+        timer: 2000,
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (error: any) {
       if (error.response) {
         console.error(`Server error ${error.response.data}`);
@@ -85,7 +95,11 @@ export default function AdminPanel() {
           <h1 className={`${styles.header}`}>Lista użytkowników </h1>
           <div className={`${styles.usersEditContainer} mt-8`}>
             {users.map((u) => (
-              <div className={`${styles.usersEditCard} mt-10`}>
+              <div
+                className={`${
+                  u.czyAdmin ? styles.usersEditCardAdmin : styles.usersEditCard
+                } mt-10`}
+              >
                 <p className="text-xs ml-2 xl:text-xl">
                   login: {u.login} email: {u.email}
                 </p>
