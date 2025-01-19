@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import movie1 from "../../../assets/movie1.jpg";
-import movie2 from "../../../assets/movie2.jpg";
-import movie3 from "../../../assets/movie3.jpg";
-import movie4 from "../../../assets/movie4.jpg";
-import movie5 from "../../../assets/movie5.jpg";
 import { useAuth } from "../../../store/AuthContext";
 import axios from "axios";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
+
 const settings = {
   dots: true,
   infinite: true,
@@ -49,6 +48,17 @@ type Review = {
 export default function Mid() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [selectedReview, setSelectedReview] = useState<Review | null>(null);
+
+  const openModal = (review: Review) => {
+    setSelectedReview(review);
+    setModalIsOpen(true);
+  };
+  const closeModal = () => {
+    setSelectedReview(null);
+    setModalIsOpen(false);
+  };
 
   const fetchReviews = async () => {
     try {
@@ -77,7 +87,11 @@ export default function Mid() {
               </p>
               <Slider {...settings}>
                 {reviews.map((r, index) => (
-                  <div className="movie-card" key={index}>
+                  <div
+                    className="movie-card"
+                    key={index}
+                    onClick={() => openModal(r)}
+                  >
                     <img
                       src={`http://localhost:5000/${r.file}`}
                       className="movie-image"
@@ -94,7 +108,11 @@ export default function Mid() {
               </p>
               <Slider {...settings}>
                 {reviews.map((r, index) => (
-                  <div className="movie-card" key={index}>
+                  <div
+                    className="movie-card"
+                    key={index}
+                    onClick={() => openModal(r)}
+                  >
                     <img
                       src={`http://localhost:5000/${r.file}`}
                       className="movie-image"
@@ -108,7 +126,11 @@ export default function Mid() {
               </p>
               <Slider {...settings2}>
                 {reviews.map((r, index) => (
-                  <div className="movie-card" key={index}>
+                  <div
+                    className="movie-card"
+                    key={index}
+                    onClick={() => openModal(r)}
+                  >
                     <img
                       src={`http://localhost:5000/${r.file}`}
                       className="movie-image"
@@ -122,7 +144,11 @@ export default function Mid() {
               </p>
               <Slider {...settings3}>
                 {reviews.map((r, index) => (
-                  <div className="movie-card" key={index}>
+                  <div
+                    className="movie-card"
+                    key={index}
+                    onClick={() => openModal(r)}
+                  >
                     <img
                       src={`http://localhost:5000/${r.file}`}
                       className="movie-image"
@@ -134,6 +160,43 @@ export default function Mid() {
             </>
           )}
         </div>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={{
+            overlay: {
+              backgroundColor: "rgba(0,0,0,0.65)",
+            },
+            content: {
+              maxWidth: "600px",
+              margin: "auto",
+              padding: "20px",
+              borderRadius: "10px",
+              boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
+              backgroundColor: "rgba(0,0,0,0.9)",
+            },
+          }}
+        >
+          {selectedReview && (
+            <div>
+              <h2 className="text-sm md:text-2xl xl:text-3xl text-center md:mb-8 mb-4">
+                {selectedReview.filmName}
+              </h2>
+              <p className="mb-4 text-xs lg:text-xl">
+                <strong>Gatunek: </strong>
+                {selectedReview.genre}
+              </p>
+              <p className="mb-4 text-xs lg:text-xl">
+                <strong>Opis: </strong>
+                {selectedReview.description}
+              </p>
+              <p className="text-xs lg:text-xl">
+                <strong>Recenzja: </strong>
+                {selectedReview.review}
+              </p>
+            </div>
+          )}
+        </Modal>
       </div>
     </section>
   );

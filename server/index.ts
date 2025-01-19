@@ -10,6 +10,7 @@ import multer from "multer";
 import path from "path";
 import { request } from "http";
 import Film from "./models/Film";
+import { verify } from "crypto";
 dotenv.config();
 
 const app = express();
@@ -236,6 +237,24 @@ app.delete("/api/deleteUser/:id", async (req: Request, res: Response) => {
     return res
       .status(500)
       .json({ error: "Nie udało się usunąć użytkownika o podanym id" });
+  }
+});
+app.post("/api/logout", async (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      res.status(400).json({ message: "Nie znaleziono tokenu." });
+    }
+    res.clearCookie(token, {
+      httpOnly: true,
+      sameSite: "strict",
+    });
+    res.status(200).json({ message: "Pomyślnie wylogowano użytkownika" });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ error: "wystąpił problem podczas wylogowywania użytkownika" });
   }
 });
 

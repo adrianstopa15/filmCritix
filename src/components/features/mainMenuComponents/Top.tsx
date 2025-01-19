@@ -1,9 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../store/AuthContext";
 import avatarIcon from "../../../assets/profileAvatar.jpg";
+import logoutIcon from "../../../assets/logoutIcon.png";
+import userIcon from "../../../assets/userIcon.png";
+import axios from "axios";
+import Swal from "sweetalert2";
 export default function Top() {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, name, surname } = useAuth();
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/logout",
+        {},
+        { withCredentials: true }
+      );
+      Swal.fire({
+        title: "Zostałeś wylogowany",
+        text: "Do zobaczenia!",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        window.location.reload();
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <section className="top">
       <div className="top-container">
@@ -19,9 +45,36 @@ export default function Top() {
                 </button>
               </NavLink>
             ) : (
-              <NavLink to="/userPanel">
-                <img src={avatarIcon} className="avatarIcon mr-4" />
-              </NavLink>
+              <>
+                <span>
+                  <img
+                    src={avatarIcon}
+                    className="avatarIcon mr-4"
+                    onClick={() => setShowDropdown(!showDropdown)}
+                  />
+                  {showDropdown && (
+                    <div className="dropdown">
+                      <p className="dropdownText mb-2 text-center py-1">
+                        {name} {surname}
+                      </p>
+                      <NavLink to="/userPanel">
+                        <div className="flex items-center mb-3">
+                          <img src={userIcon} className="logoutIcon mr-2" />
+                          <p className="text-xs ">Profil</p>
+                        </div>
+                      </NavLink>
+                      <div
+                        className="flex items-center cursor-pointer"
+                        onClick={handleLogout}
+                      >
+                        {" "}
+                        <img src={logoutIcon} className="logoutIcon mr-2" />
+                        <p className="text-xs">Wyloguj</p>
+                      </div>
+                    </div>
+                  )}
+                </span>
+              </>
             )}
           </nav>
         </section>
