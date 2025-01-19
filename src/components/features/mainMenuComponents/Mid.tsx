@@ -8,6 +8,46 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
+const settingsGlobal = {
+  dots: true,
+  infinite: true,
+  speed: 1000,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  cssEase: "linear",
+  responsive: [
+    {
+      breakpoint: 1080,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 720,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 580,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+      },
+    },
+  ],
+};
+
 const settings = {
   dots: true,
   infinite: true,
@@ -31,6 +71,15 @@ const settings3 = {
   dots: true,
   infinite: false,
   slidesToShow: 5,
+  slidesToScroll: 1,
+  speed: 1000,
+  autoplay: false,
+  cssEase: "linear",
+};
+const settings4 = {
+  dots: true,
+  infinite: false,
+  slidesToShow: 2,
   slidesToScroll: 1,
   speed: 1000,
   autoplay: false,
@@ -85,7 +134,7 @@ export default function Mid() {
               <p className="text-sm lg:text-2xl xl:text-3xl mb-8 mt-16">
                 Najnowsze Recenzje
               </p>
-              <Slider {...settings}>
+              <Slider {...settingsGlobal}>
                 {reviews.map((r, index) => (
                   <div
                     className="movie-card"
@@ -106,7 +155,7 @@ export default function Mid() {
               <p className="text-sm lg:text-2xl xl:text-3xl  mb-8 mt-16">
                 Najlepsze recenzje
               </p>
-              <Slider {...settings}>
+              <Slider {...settingsGlobal}>
                 {reviews.map((r, index) => (
                   <div
                     className="movie-card"
@@ -124,7 +173,7 @@ export default function Mid() {
               <p className="text-sm lg:text-2xl xl:text-3xl  mb-8 mt-16">
                 Najnowsze recenzje
               </p>
-              <Slider {...settings2}>
+              <Slider {...settingsGlobal}>
                 {reviews.map((r, index) => (
                   <div
                     className="movie-card"
@@ -142,7 +191,7 @@ export default function Mid() {
               <p className="text-sm lg:text-2xl xl:text-3xl  mb-8 mt-16">
                 Przeczytaj ponownie
               </p>
-              <Slider {...settings3}>
+              <Slider {...settingsGlobal}>
                 {reviews.map((r, index) => (
                   <div
                     className="movie-card"

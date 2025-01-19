@@ -3,6 +3,7 @@ import Header from "../Header";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../store/AuthContext";
+import Swal from "sweetalert2";
 
 export default function LoginPanel() {
   const navigate = useNavigate();
@@ -24,11 +25,28 @@ export default function LoginPanel() {
         formData,
         { withCredentials: true }
       );
-    } catch (error) {
-      console.error("There was problem with login user", error);
+
+      checkAuthStatus();
+      navigate("/");
+    } catch (error: any) {
+      console.error("There was a problem with login", error);
+
+      if (error.response && error.response.status === 401) {
+        Swal.fire({
+          title: "Nieprawidłowe dane",
+          text: "Adres e-mail lub hasło są niepoprawne. Spróbuj ponownie.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      } else {
+        Swal.fire({
+          title: "Błąd serwera",
+          text: "Wystąpił problem podczas logowania. Spróbuj ponownie później.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
     }
-    checkAuthStatus();
-    navigate("/");
   };
   return (
     <div className="login-section">
@@ -43,6 +61,7 @@ export default function LoginPanel() {
             placeholder="E-mail"
             className="inputMain mb-8"
             onChange={handleLoginChange}
+            required
           />
           <input
             type="password"
@@ -51,6 +70,7 @@ export default function LoginPanel() {
             placeholder="Hasło"
             className="inputMain mb-7"
             onChange={handleLoginChange}
+            required
           />
           <button className="button-red px-14 py-2 mb-12 mt-8" type="submit">
             Zaloguj się

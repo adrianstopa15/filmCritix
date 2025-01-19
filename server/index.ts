@@ -75,6 +75,8 @@ app.post("/api/register", async (req: Request, res: Response) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    const isAdmin = czyAdmin !== undefined ? czyAdmin : false;
+
     const newUser = new User({
       email,
       login,
@@ -82,7 +84,7 @@ app.post("/api/register", async (req: Request, res: Response) => {
       surname,
       phone,
       password: hashedPassword,
-      czyAdmin,
+      czyAdmin: isAdmin,
     });
 
     await newUser.save();
@@ -105,12 +107,12 @@ app.post("/api/login", async (req: Request, res: Response) => {
     const user = await User.findOne({ email });
     if (!user) {
       return res
-        .status(400)
+        .status(401)
         .json({ error: "Nie znaleziono użytkownika o podanym mailu" });
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(400).json({ error: "Podane hasło jest nieprawidłowe" });
+      return res.status(401).json({ error: "Podane hasło jest nieprawidłowe" });
     }
     const token = jwt.sign(
       { userId: user._id, email: user.email },

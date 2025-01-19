@@ -63,6 +63,8 @@ export default function RegisterPanel() {
               onChange={handleRegisterChange}
               className="inputMain mb-7"
               placeholder="E-mail"
+              maxLength={30}
+              required
             />
             <input
               type="text"
@@ -71,6 +73,8 @@ export default function RegisterPanel() {
               onChange={handleRegisterChange}
               className="inputMain mb-7"
               placeholder="Login"
+              maxLength={20}
+              required
             />
             <input
               type="password"
@@ -79,6 +83,9 @@ export default function RegisterPanel() {
               onChange={handleRegisterChange}
               className="inputMain mb-7"
               placeholder="Hasło"
+              maxLength={30}
+              minLength={6}
+              required
             />
             <input
               className="inputMain mb-7"
@@ -87,6 +94,8 @@ export default function RegisterPanel() {
               name="name"
               onChange={handleRegisterChange}
               placeholder="Imie"
+              maxLength={25}
+              required
             />
             <input
               className="inputMain mb-7"
@@ -95,6 +104,8 @@ export default function RegisterPanel() {
               onChange={handleRegisterChange}
               name="surname"
               placeholder="Nazwisko"
+              maxLength={25}
+              required
             />
             <input
               className="inputMain mb-7"
@@ -103,6 +114,8 @@ export default function RegisterPanel() {
               name="phone"
               onChange={handleRegisterChange}
               placeholder="Telefon"
+              pattern="\d{9}"
+              required
             />
 
             <button className="button-red px-14 py-2 mb-12 mt-8" type="submit">

@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "./store/AuthContext";
 import { Navigate } from "react-router-dom";
+import { LoadingScreen } from "./components/features/LoadingScreen";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ export default function ProtectedRoute({
 }: ProtectedRouteProps) {
   const { isLoggedIn, isAuthLoading, czyAdmin } = useAuth();
   if (isAuthLoading) {
-    return <></>;
+    return <LoadingScreen />;
   }
   if (!isLoggedIn) {
     return <Navigate to="/" replace />;

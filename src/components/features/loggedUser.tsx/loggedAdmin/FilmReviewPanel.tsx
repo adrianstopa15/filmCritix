@@ -371,7 +371,7 @@ export default function FilmReviewPanel() {
             padding: "20px",
             borderRadius: "10px",
             boxShadow: "0 10px 25px rgba(0,0,0,0.65)",
-            backgroundColor: "rgba(22, 28, 191, 0.949)",
+            backgroundColor: "rgba(237, 237, 237, 0.92)",
             color: "black",
           },
         }}
@@ -464,7 +464,7 @@ export default function FilmReviewPanel() {
             )}
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end mt-8">
             <button
               type="button"
               onClick={closeModal}
