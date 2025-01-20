@@ -8,17 +8,27 @@ FilmCritix to aplikacja internetowa dla entuzjastów filmów, umożliwiająca pr
 
 ### Frontend
 1. Przejdź do folderu głównego projektu.
-2. W terminalu wpisz:
+2. Pobierz nodemodules wpisując w terminalu
+     ```bash
+     npm install
+   ```
+4. Uruchom aplikacje za pomocą komendy:
+ 
    ```bash
    npm run dev
    ```
 
 ### Backend
 1. Przejdź do folderu `server`:
+   
    ```bash
    cd server
    ```
-2. W terminalu wpisz:
+2. Pobierz nodemodules wpisując w terminalu komende
+    ```bash
+     npm install
+   ```
+3. uruchom serwer za pomocą komendy: 
    ```bash
    npm run dev:server
    ```
