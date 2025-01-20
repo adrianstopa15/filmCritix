@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 type Review = {
+  _id: string;
   filmName: string;
   description: string;
   genre: string;

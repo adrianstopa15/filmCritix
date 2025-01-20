@@ -2,9 +2,34 @@ import React, { useEffect, useState } from "react";
 import styles from "../UserPanel.module.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+
+interface FormData {
+  email: string;
+  login: string;
+  password: string;
+  name: string;
+  surname: string;
+  phone: string;
+  czyAdmin: boolean;
+}
+interface User {
+  _id: string;
+  login: string;
+  email: string;
+  czyAdmin: boolean;
+}
+
 export default function AdminPanel() {
-  const [users, setUsers] = useState([]);
-  const [formData, setFormData] = useState({});
+  const [users, setUsers] = useState<User[]>([]);
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    login: "",
+    password: "",
+    name: "",
+    surname: "",
+    phone: "",
+    czyAdmin: false,
+  });
   const [userCreator, setUserCreator] = useState(false);
   const showUsers = async () => {
     const response = await axios.get("http://localhost:5000/api/getUsers");
@@ -190,7 +215,6 @@ export default function AdminPanel() {
                 id="czyAdmin"
                 name="czyAdmin"
                 onChange={handleRegisterChange}
-                required
               />
             </span>
             <button

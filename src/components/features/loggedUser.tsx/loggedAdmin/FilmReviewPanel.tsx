@@ -237,7 +237,7 @@ export default function FilmReviewPanel() {
       </h1>
 
       {creatorMode === "" && (
-        <div className="mt-32">
+        <div className="mt-32 flex">
           <button
             className={`${styles.btnMainGreen} mr-4`}
             onClick={() => setCreatorMode("addReview")}

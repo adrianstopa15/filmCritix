@@ -357,4 +357,11 @@
     text-align: right;
     margin-right: 15px;
   }
+  .filmEditCard {
+    max-width: 8rem;
+  }
+  .usersEditCard,
+  .usersEditCardAdmin {
+    max-width: 8rem;
+  }
 }

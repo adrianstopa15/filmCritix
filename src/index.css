@@ -175,6 +175,7 @@ footer {
   cursor: pointer;
 }
 .dropdown {
+  z-index: 1000;
   position: absolute;
   padding: 0.2rem 0.3rem 0.2rem 0.3rem;
   right: 2%;
@@ -199,5 +200,22 @@ footer {
     background-color: rgba(8, 8, 8, 0.699);
     border: solid rgb(134, 132, 132) 1px;
     border-radius: 2%;
+  }
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+  .grid-card {
+    padding: 2rem 0;
+    max-width: 15rem;
+  }
+  .bottom {
+    display: flex;
+    text-align: center;
+  }
+  .footer-container {
+    padding-top: 20rem;
+    padding-bottom: 4rem;
   }
 }

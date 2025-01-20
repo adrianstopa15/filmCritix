@@ -32,8 +32,8 @@ export default function Bottom() {
         <div className="bottom-grid">
           {loggedProfits.map((p) => (
             <div className="grid-card py-8 px-12 pb-32">
-              <h3 className="text-xl mb-6 font-bold">{p.text}</h3>
-              <p className="text-gray-300">{p.subtext}</p>
+              <h3 className="text-sm lg:text-xl mb-6 font-bold">{p.text}</h3>
+              <p className="text-xs xl:text-m text-gray-300">{p.subtext}</p>
             </div>
           ))}
         </div>

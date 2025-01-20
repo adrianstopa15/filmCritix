@@ -11,6 +11,7 @@ import path from "path";
 import { request } from "http";
 import Film from "./models/Film";
 import { verify } from "crypto";
+import logger from "./logger";
 dotenv.config();
 
 const app = express();
@@ -101,17 +102,20 @@ app.post("/api/register", async (req: Request, res: Response) => {
 });
 
 app.post("/api/login", async (req: Request, res: Response) => {
+  const { email, password } = req.body;
   try {
-    const { email, password } = req.body;
-
     const user = await User.findOne({ email });
     if (!user) {
+      logger.warn(`Nieudane logowanie - nie znaleziono użytkownika: ${email}`);
       return res
         .status(401)
         .json({ error: "Nie znaleziono użytkownika o podanym mailu" });
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
+      logger.warn(
+        `Nieudane logowanie - błędne hasło dla użytkownika: ${email}`
+      );
       return res.status(401).json({ error: "Podane hasło jest nieprawidłowe" });
     }
     const token = jwt.sign(
@@ -119,6 +123,7 @@ app.post("/api/login", async (req: Request, res: Response) => {
       process.env.JWT_SECRET!,
       { expiresIn: "24h" }
     );
+    logger.info(`Zalogowano użytkownika: ${email}`);
     res
       .cookie("token", token, {
         httpOnly: true,
@@ -126,7 +131,10 @@ app.post("/api/login", async (req: Request, res: Response) => {
       })
       .status(200)
       .json({ message: "Pomyślnie zalogowano użytkownika", user });
-  } catch (error) {
+  } catch (error: any) {
+    logger.error(
+      `Błąd podczas logowania użytkownika ${email}, ${error.message}`
+    );
     console.error("Problem z zalogowaniem użytkownika", error);
     return res
       .status(400)
@@ -139,6 +147,7 @@ app.post("/api/logout", async (req: Request, res: Response) => {
       httpOnly: true,
       expires: new Date(0),
     });
+
     return res.status(200).json({ message: "Użytkownik został wylogowany." });
   } catch (error) {
     console.error("Nie udało się wylogować użytkownika", error);
@@ -230,7 +239,7 @@ app.delete("/api/deleteUser/:id", async (req: Request, res: Response) => {
         .status(404)
         .json({ error: "nie znaleziono użytkownika o podanym ID" });
     }
-
+    logger.info(`Użytkownik ${deletedUser} został usunięty.`);
     return res
       .status(200)
       .json({ message: "Użytkownik został usunięty z bazy.", deletedUser });
@@ -279,9 +288,11 @@ app.post(
         file: filePath,
       });
       await newFilm.save();
+      logger.info(`Dodano recenzje ${newFilm}`);
       console.log("Dodano recenzje", newFilm);
       return res.status(201).json({ message: "Recenzja została dodana." });
     } catch (error) {
+      logger.error(`Wystąpił problem podczas dodawania recenzji ${error}`);
       console.error("Wystąpił problem przy dodawaniu recenzji", error);
       res.status(500).json({ error: "Nie udało się dodać recenzji" });
     }
@@ -313,7 +324,7 @@ app.delete("/api/deleteReview/:id", async (req: Request, res: Response) => {
         .status(404)
         .json({ error: "Nie znaleziono recenzji o takim id" });
     }
-
+    logger.info(`Usunięto recenzje ${deletedReview}`);
     return res.status(200).json({ message: "Pomyślnie usunięto recenzję" });
   } catch (error) {
     console.error(error);
@@ -350,6 +361,9 @@ app.put(
         console.error("Nie znaleziono recenzji");
       }
       console.log("Zaktualizowano recenzję", updatedReview);
+      logger.info(
+        `Recenzja ${updatedReview} została zedytowana przez administratora`
+      );
       return res
         .status(200)
         .json({ message: "Recenzja została zaktualizowana" });
