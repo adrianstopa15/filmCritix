@@ -1,54 +1,166 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
+# FilmCritix
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FilmCritix to aplikacja internetowa dla entuzjastów filmów, umożliwiająca przeglądanie, ocenianie i zarządzanie recenzjami filmów. Projekt zawiera panel administracyjny oraz funkcje autoryzacji użytkowników.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Uruchamianie projektu
 
-## Expanding the ESLint configuration
+### Frontend
+1. Przejdź do folderu głównego projektu.
+2. Pobierz nodemodules wpisując w terminalu
+     ```bash
+     npm install
+   ```
+4. Uruchom aplikacje za pomocą komendy:
+ 
+   ```bash
+   npm run dev
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Backend
+1. Przejdź do folderu `server`:
+   
+   ```bash
+   cd server
+   ```
+2. Pobierz nodemodules wpisując w terminalu komende
+    ```bash
+     npm install
+   ```
+3. uruchom serwer za pomocą komendy: 
+   ```bash
+   npm run dev:server
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+Plik `.env` zawiera już skonfigurowane zmienne środowiskowe, w tym URL bazy danych oraz sekrety JWT. Dzięki temu aplikacja po uruchomieniu będzie działać od razu z gotowymi ustawieniami.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## Gotowi użytkownicy
+- **Użytkownik**
+  - Email: `user@wp.pl`
+  - Hasło: `user123`
+- **Administrator**
+  - Email: `admin@admin.pl`
+  - Hasło: `admin123`
+
+---
+
+## Technologie
+- **Frontend:** React, TypeScript, TailwindCSS
+- **Backend:** Node.js, Express.js, MongoDB, Mongoose
+- **Autoryzacja:** JWT (JSON Web Token), ciasteczka HTTP
+- **Upload plików:** Multer
+- **Logowanie zdarzeń:** Winston (logi zapisywane są w folderze `logs`)
+- **Testowanie i debugowanie:** Postman
+
+---
+
+## Dokumentacja API
+
+### Autoryzacja
+#### Rejestracja użytkownika
+**Endpoint:** `POST /api/register`
+
+**Nagłówki:**
+- `Content-Type: application/json`
+
+**Body:**
+```json
+{
+  "email": "user@example.com",
+  "login": "username",
+  "password": "password123",
+  "name": "John",
+  "surname": "Doe",
+  "phone": "123456789",
+  "czyAdmin": false
+}
 ```
+**Odpowiedź:**
+- Status 201: `{"message": "Użytkownik został pomyślnie zarejestrowany"}`
+- Status 400: `{"error": "Użytkownik o tym emailu już istnieje"}`
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+#### Logowanie
+**Endpoint:** `POST /api/login`
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+**Nagłówki:**
+- `Content-Type: application/json`
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+**Body:**
+```json
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
 ```
-=======
-# filmCritix
->>>>>>> 4b88a0d94820c07d8ed6d20988fdc0fcd7d5d042
+**Odpowiedź:**
+- Status 200: `{"message": "Pomyślnie zalogowano użytkownika", "user": {...}}`
+- Status 401: `{"error": "Nie znaleziono użytkownika o podanym mailu"}`
+
+#### Wylogowanie
+**Endpoint:** `POST /api/logout`
+
+**Nagłówki:**
+- `Cookie: token=<JWT>`
+
+**Odpowiedź:**
+- Status 200: `{"message": "Użytkownik został wylogowany."}`
+
+### Użytkownicy
+#### Pobieranie użytkowników
+**Endpoint:** `GET /api/getUsers`
+
+**Odpowiedź:**
+- Status 200: `[ {"_id": "...", "email": "..."}, ... ]`
+
+#### Usuwanie użytkownika
+**Endpoint:** `DELETE /api/deleteUser/:id`
+
+**Odpowiedź:**
+- Status 200: `{"message": "Użytkownik został usunięty z bazy."}`
+- Status 403: `{"error": "Nie możesz usunąć swojego konta."}`
+
+### Recenzje
+#### Dodawanie recenzji
+**Endpoint:** `POST /api/addReview`
+
+**Nagłówki:**
+- `Content-Type: multipart/form-data`
+
+**Body:**
+- `filmName`: Tytuł filmu
+- `description`: Krótki opis
+- `genre`: Gatunek
+- `review`: Treść recenzji
+- `file`: Plik z okładką
+
+**Odpowiedź:**
+- Status 201: `{"message": "Recenzja została dodana."}`
+
+#### Edycja recenzji
+**Endpoint:** `PUT /api/editReview/:id`
+
+**Nagłówki:**
+- `Content-Type: multipart/form-data`
+
+**Body:**
+- Jak w przypadku dodawania recenzji
+
+**Odpowiedź:**
+- Status 200: `{"message": "Recenzja została zaktualizowana"}`
+
+#### Usuwanie recenzji
+**Endpoint:** `DELETE /api/deleteReview/:id`
+
+**Odpowiedź:**
+- Status 200: `{"message": "Pomyślnie usunięto recenzję"}`
+
+#### Pobieranie recenzji
+**Endpoint:** `GET /api/showReviews`
+
+**Odpowiedź:**
+- Status 200: `[ {"_id": "...", "filmName": "..."}, ... ]`
+
+
